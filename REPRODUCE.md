@@ -44,7 +44,6 @@ from `my_functions_NYT_gpu.py`. The `run_*.py` scripts reproduce individual supp
 | `total_nyt_terrorism_news1850-2019.csv` | Full scrape metadata (title, pubdate, link) |
 | `NYT_text_1851_1980.csv` | OCR full text, pre-1980 (NYT TimesMachine) |
 | `nyt_online_texts.csv` | Online full text (post-1980) |
-| `nyt_terrorism_pdftexts_proquest2.csv` | ProQuest PDF full text (1981–2019) |
 | `total_nyt_terrorism_news1850-1980_raw.csv` | Raw pre-1980 set |
 
 The corpus is filtered to articles whose full text contains "terrorism" or "terrorist"
