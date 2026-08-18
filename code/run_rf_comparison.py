@@ -15,11 +15,17 @@ from sklearn.metrics import f1_score, classification_report
 random.seed(123)
 np.random.seed(123)
 
-OUT_DIR = 'C:/Users/tosea/claude_test_project/nlp_results'
+# --- repository-relative paths (edit here or set NYT_NLP_DATA / NYT_NLP_RESULTS) ---
+import os as _os
+REPO_ROOT = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+DATA_ROOT = _os.environ.get('NYT_NLP_DATA', _os.path.join(REPO_ROOT, 'data'))
+RESULTS_ROOT = _os.environ.get('NYT_NLP_RESULTS', _os.path.join(REPO_ROOT, 'results'))
+_os.makedirs(RESULTS_ROOT, exist_ok=True)
+OUT_DIR = RESULTS_ROOT
 os.makedirs(OUT_DIR, exist_ok=True)
 
 print('Loading parquet...')
-df = pd.read_parquet('D:/Jupyter/NYT_API/combined_processed_df.parquet')
+df = pd.read_parquet(_os.path.join(DATA_ROOT, 'combined_processed_df.parquet'))
 df = df[df['clean_lemmatized_phrased'].notna()].copy()
 
 label_col = 'label'

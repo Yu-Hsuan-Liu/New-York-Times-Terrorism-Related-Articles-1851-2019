@@ -11,7 +11,13 @@ appears in Version B, the finding is robust independent of normalization.
 import pandas as pd
 from gensim.models import Word2Vec
 
-PARQUET = 'D:/Jupyter/NYT_API/combined_processed_df_updated.parquet'
+# --- repository-relative paths (edit here or set NYT_NLP_DATA / NYT_NLP_RESULTS) ---
+import os as _os
+REPO_ROOT = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+DATA_ROOT = _os.environ.get('NYT_NLP_DATA', _os.path.join(REPO_ROOT, 'data'))
+RESULTS_ROOT = _os.environ.get('NYT_NLP_RESULTS', _os.path.join(REPO_ROOT, 'results'))
+_os.makedirs(RESULTS_ROOT, exist_ok=True)
+PARQUET = _os.path.join(DATA_ROOT, 'combined_processed_df_updated.parquet')
 
 print("Loading parquet...")
 df = pd.read_parquet(PARQUET)

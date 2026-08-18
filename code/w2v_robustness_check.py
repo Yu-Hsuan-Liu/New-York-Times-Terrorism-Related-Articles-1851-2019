@@ -27,9 +27,15 @@ warnings.filterwarnings("ignore")
 
 # ── Configuration ──────────────────────────────────────────────────────
 SEED = 123
-PARQUET_PATH = "D:/Jupyter/NYT_API/combined_processed_df.parquet"
+# --- repository-relative paths (edit here or set NYT_NLP_DATA / NYT_NLP_RESULTS) ---
+import os as _os
+REPO_ROOT = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+DATA_ROOT = _os.environ.get('NYT_NLP_DATA', _os.path.join(REPO_ROOT, 'data'))
+RESULTS_ROOT = _os.environ.get('NYT_NLP_RESULTS', _os.path.join(REPO_ROOT, 'results'))
+_os.makedirs(RESULTS_ROOT, exist_ok=True)
+PARQUET_PATH = _os.path.join(DATA_ROOT, 'combined_processed_df.parquet')
 ANALYSIS_COLUMN = "clean_lemmatized_phrased"
-OUTPUT_DIR = "C:/Users/tosea/claude_test_project/nlp_results"
+OUTPUT_DIR = RESULTS_ROOT
 ORIGINAL_CSV = os.path.join(OUTPUT_DIR, "FINAL_ALL_MODELS_RESULTS.csv")
 
 UNIFIED_MIN_COUNT = 5

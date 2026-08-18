@@ -12,9 +12,15 @@ import re
 import numpy as np
 import pandas as pd
 
-OUT = "C:/Users/tosea/claude_project_NYT_NLP/reviewer_analyses/"
-RAW = "D:/Jupyter/NYT_API/NYT_text_1851_1980.csv"
-PARQUET = "D:/Jupyter/NYT_API/combined_processed_df_updated.parquet"
+# --- repository-relative paths (edit here or set NYT_NLP_DATA / NYT_NLP_RESULTS) ---
+import os as _os
+REPO_ROOT = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+DATA_ROOT = _os.environ.get('NYT_NLP_DATA', _os.path.join(REPO_ROOT, 'data'))
+RESULTS_ROOT = _os.environ.get('NYT_NLP_RESULTS', _os.path.join(REPO_ROOT, 'results'))
+_os.makedirs(RESULTS_ROOT, exist_ok=True)
+OUT = _os.path.join(RESULTS_ROOT, '')
+RAW = _os.path.join(DATA_ROOT, 'NYT_text_1851_1980.csv')
+PARQUET = _os.path.join(DATA_ROOT, 'combined_processed_df_updated.parquet')
 
 # ---------------- reproduce analysis corpus ----------------
 not_contain = ["The Screen:","Book Review","The Kong and I","TV:","TV ","THE SCREEN","Screen","STAGE VIEW","Publishing:","Public and Private Games","Paperback","ON TELEVISION","News of the Theater","IN AND OUT OF BOOKS","Editors' Choice","Books: ","Books--Authors","Books of","Books and Authors","Books -- Authors","BOOK NOTES","BOOK ENDS","Best Sellers","BEHIND THE BEST SELLERS","At the Movies","Arts and Leisure Guide","About Real Estate","Advertising","Answers to Weekly Quiz","Answers to Quiz","A Listing of","TV","BOOKS OF THE TIMES","THE PLAY","MUSIC VIEW", "Books of The","GOING OUT Guide", "Movies", "Paper backs","Paperback Best Sellers", "Paperbacks","Westchester/This Week","Long Island/ This Week","Television This Week","New Jersey/This Week", "Weekly News Quiz","The Screen;", "What's in a Book Name?", "When Is a Movie So Bad","Sports Editor's Mailbox: The Animals at Shea/Scoreboard at Yankee Stadium","Sports News Briefs","Sports World Special","Sports of The Times","Sports of the Times","Stage: ", "A preview OF FALL BOOKS; ", "Books Authors; ","NEW PUBLICATONS", "NEW PUBLICATIONS", "New Books","OF MANY THINGS: ","PREVIEW of FALL BOOKS", "Movie Mailbag", "NEW BOOKS","Passionate Story of a Bandit:'Augusto Matraga' Is at 5th Avenue Cinema Movie From Brazil by Santos Arrives","Action Movie Set in Latin America", "M-G-M FILLS ROLES IN TWO NEW FILMS;","His Latest Volume of Collected Plays", "Musical Cartoon to Play At the Brooklyn Academy","STUDENTS TO GIVE PLAYS; 4 Municipal Colleges to Present Drama Festival May 12","The Theater: A Musical","'Minnie' on Music -- and Rain","Amid Trials of Croatian Nationalists, a Satirical Musical Comedy in Zagreb Evokes Laughter Through Tears","THE STADIUM SEASON; Management Overcomes Many Difficulties -- Need of Music in Wartime","Drama: Adapting Wiesel's", "HITCHCOCK: MASTER MELODRAMATIST", "Terrorism Is Drama","They Weren't Riotous Comedies", "Sports In America","'Mary Burns, Fugitive,' the Melodrama of a Girl Who Loved a Murderer, at the Paramount.","'Thunderbolt,' Entebbe Raid In Israeli Film","3 1/2-Hour Film Based on Uris' Novel Opens", "Screen: ","6 Film Studio's Vie Over Entebbe Raid", "STAGE VIEW","CHARGES TERRORISM IN FILM INDUSTRY; Head of New Jersey","FILM CONTROVERSY", "FILM VIEW", "Film Festival: ", "Film Fete:","Film:", "Kennedy Center Drops Disputed Film", "SHOP TALK","Shouldn't Suspense Films Do More Than Just Kill Time", "STAMPS","'Viva Italia!,' Starring Vittorio Gassman, Returns to Day of Separate-Sketch Film:The Cast"]

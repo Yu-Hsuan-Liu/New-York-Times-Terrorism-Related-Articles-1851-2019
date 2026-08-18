@@ -663,7 +663,13 @@ if __name__ == '__main__':
     print("Initializing Script...")
     
     # 1. Setup Paths
-    module_path = "D:/Jupyter/NYT_API/"
+    # --- repository-relative paths (edit here or set NYT_NLP_DATA / NYT_NLP_RESULTS) ---
+    import os as _os
+    REPO_ROOT = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+    DATA_ROOT = _os.environ.get('NYT_NLP_DATA', _os.path.join(REPO_ROOT, 'data'))
+    RESULTS_ROOT = _os.environ.get('NYT_NLP_RESULTS', _os.path.join(REPO_ROOT, 'results'))
+    _os.makedirs(RESULTS_ROOT, exist_ok=True)
+    module_path = _os.path.join(DATA_ROOT, '')
     if module_path not in sys.path:
         sys.path.insert(0, module_path)
     os.chdir(module_path)
@@ -734,6 +740,11 @@ if __name__ == '__main__':
     # Filter online_df
     online_df = online_df[~online_df.texts.duplicated()]
     online_df = online_df[(online_df.texts.str.contains("terrorist", na=False)|online_df.texts.str.contains("terrorism", na=False))]
+    # The web-scrape file also holds digital texts for pre-1981 articles (master-list index < 22855).
+    # Those articles are covered by the OCR corpus (my_pd) under their true period; keep only the
+    # 1981-2019 rows here so no article enters the corpus twice or under the wrong period.
+    online_df['index'] = pd.to_numeric(online_df['index'], errors='coerce')
+    online_df = online_df[online_df['index'] >= 22855]
     
     # Filter keywords in my_pd
     my_pd = my_pd[(my_pd.text.str.contains("terrorist", na=False)|my_pd.text.str.contains("terrorism", na=False))]

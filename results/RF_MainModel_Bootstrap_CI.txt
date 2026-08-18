@@ -1,4 +1,0 @@
-Main model (sample/my_model.pkl + sample/vectorizer.pkl)
-Weighted F1: 0.7432
-95% Bootstrap CI: [0.7121, 0.7726]
-Based on 836 test samples, 1000 bootstrap iterations

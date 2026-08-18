@@ -1,1 +1,1 @@
-K=12: coherence=0.4978
+K=12: coherence=0.5309

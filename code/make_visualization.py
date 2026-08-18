@@ -17,16 +17,16 @@ periods = [
 
 # Each list = proportions (%) across the 7 periods
 topics = {
-    'T1: European War & Rev. Politics':  [90.95, 66.81, 59.10, 44.52, 20.94,  3.32,  0.08],
-    'T5: Cold War & Soviet Politics':    [ 7.20, 22.60, 15.37, 17.08, 11.56,  7.54,  3.68],
-    'T0: Polit. Violence & Brit. Col.':  [ 0.17,  3.27,  6.08, 12.76, 17.30, 13.74,  2.81],
-    'T9: Armed Violence Operations':     [ 0.00,  1.68,  7.52, 14.09, 13.46, 12.24,  6.74],
-    'T10: Iraq & Afghanistan':           [ 0.00,  0.00,  0.07,  0.33,  2.17,  4.18, 17.41],
-    'T8: Domestic & Social Violence':    [ 0.17,  0.62,  0.99,  0.73,  5.11, 11.91, 16.48],
-    'T7: Israeli–Palestinian Conflict':  [ 0.00,  0.00,  1.87,  2.19,  9.02, 11.74,  8.33],
-    'T6: Criminal Justice & Pros.':      [ 0.34,  3.62,  4.59,  3.19,  6.81, 11.64, 11.08],
-    'T4: Electoral & Domestic Pol.':     [ 1.01,  0.53,  0.50,  0.53,  1.26,  3.29, 11.56],
-    'Other (T2, T3, T11)':               [ 0.17,  0.88,  3.92,  4.59, 12.38, 20.41, 21.82],
+    'T0: Polit. Violence & Colonial Conflict': [ 24.29,  45.72,  60.61,  63.39,  48.86,   9.15,   1.28],
+    'T11: War & Policy Commentary': [ 49.08,  32.13,  15.75,  10.37,  10.93,   2.85,   1.80],
+    'T1: Domestic & Social Life': [ 23.45,  10.24,   6.32,   4.32,   9.56,  12.19,  12.21],
+    'T7: Intelligence & Security': [  0.00,   0.00,   0.32,   0.27,   4.55,  12.62,  16.11],
+    'T9: Afghanistan–Pakistan & Al-Qaeda': [  0.00,   0.00,   0.11,   0.27,   0.26,   4.54,  14.95],
+    'T2: Middle East Diplomacy': [  0.00,   0.00,   2.68,   1.33,   6.18,  14.05,   5.58],
+    'T4: Bombings & Armed Attacks': [  0.50,   2.38,   2.83,   2.99,   7.32,  13.11,   7.67],
+    'T5: European & Soviet Politics': [  0.34,   5.47,   7.24,  13.02,   3.84,   6.23,   3.48],
+    'T10: Bush-Era Politics': [  0.84,   0.26,   0.32,   0.13,   0.47,   4.18,  11.86],
+    'Other (T3, T6, T8)': [  1.51,   3.80,   3.81,   3.92,   8.03,  21.07,  25.05],
 }
 
 # Colorblind-friendly palette (Tableau-10 inspired)
@@ -83,7 +83,13 @@ ax.set_title(
 )
 
 plt.tight_layout()
-out = 'C:/Users/tosea/claude_test_project/Figure2_LDA_Topics.png'
+# --- repository-relative paths (edit here or set NYT_NLP_DATA / NYT_NLP_RESULTS) ---
+import os as _os
+REPO_ROOT = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+DATA_ROOT = _os.environ.get('NYT_NLP_DATA', _os.path.join(REPO_ROOT, 'data'))
+RESULTS_ROOT = _os.environ.get('NYT_NLP_RESULTS', _os.path.join(REPO_ROOT, 'results'))
+_os.makedirs(RESULTS_ROOT, exist_ok=True)
+out = _os.path.join(REPO_ROOT, 'figures', 'Figure2_LDA_Topics.png')
 plt.savefig(out, dpi=300, bbox_inches='tight', facecolor='white')
 plt.close()
 print('Saved:', out)
@@ -123,7 +129,7 @@ ax2.set_title('Figure 2 (alt). LDA Topic Proportions Heatmap by Historical Perio
 ax2.set_xlabel('Historical Period', fontsize=10, labelpad=6)
 
 plt.tight_layout()
-out2 = 'C:/Users/tosea/claude_test_project/Figure2_LDA_Heatmap.png'
+out2 = _os.path.join(REPO_ROOT, 'figures', 'Figure2_LDA_Heatmap.png')
 plt.savefig(out2, dpi=300, bbox_inches='tight', facecolor='white')
 plt.close()
 print('Saved:', out2)
