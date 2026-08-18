@@ -13,8 +13,14 @@ import numpy as np
 import pandas as pd
 from gensim.models import Word2Vec
 
-OUT = "C:/Users/tosea/claude_project_NYT_NLP/reviewer_analyses/"
-PARQUET = "D:/Jupyter/NYT_API/combined_processed_df_updated.parquet"
+# --- repository-relative paths (edit here or set NYT_NLP_DATA / NYT_NLP_RESULTS) ---
+import os as _os
+REPO_ROOT = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+DATA_ROOT = _os.environ.get('NYT_NLP_DATA', _os.path.join(REPO_ROOT, 'data'))
+RESULTS_ROOT = _os.environ.get('NYT_NLP_RESULTS', _os.path.join(REPO_ROOT, 'results'))
+_os.makedirs(RESULTS_ROOT, exist_ok=True)
+OUT = _os.path.join(RESULTS_ROOT, '')
+PARQUET = _os.path.join(DATA_ROOT, 'combined_processed_df_updated.parquet')
 B = 50
 PARAMS = dict(vector_size=50, window=3, epochs=50, min_count=3)
 

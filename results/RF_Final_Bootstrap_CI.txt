@@ -1,1 +1,1 @@
-Weighted F1: 0.6660, 95% Bootstrap CI: [0.6354, 0.6994]
+Weighted F1: 0.6840, 95% Bootstrap CI: [0.6522, 0.7150]

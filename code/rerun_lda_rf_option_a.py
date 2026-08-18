@@ -37,10 +37,16 @@ warnings.filterwarnings("ignore")
 random.seed(123)
 np.random.seed(123)
 
-PARQUET_PATH  = 'D:/Jupyter/NYT_API/combined_processed_df.parquet'
-NEW_PARQUET   = 'D:/Jupyter/NYT_API/combined_processed_df_updated.parquet'
-OUT_DIR       = 'C:/Users/tosea/claude_test_project/nlp_results'
-SAMPLE_DIR    = 'D:/Jupyter/NYT_API/sample_updated/'
+# --- repository-relative paths (edit here or set NYT_NLP_DATA / NYT_NLP_RESULTS) ---
+import os as _os
+REPO_ROOT = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+DATA_ROOT = _os.environ.get('NYT_NLP_DATA', _os.path.join(REPO_ROOT, 'data'))
+RESULTS_ROOT = _os.environ.get('NYT_NLP_RESULTS', _os.path.join(REPO_ROOT, 'results'))
+_os.makedirs(RESULTS_ROOT, exist_ok=True)
+PARQUET_PATH  = _os.path.join(DATA_ROOT, 'combined_processed_df.parquet')
+NEW_PARQUET   = _os.path.join(DATA_ROOT, 'combined_processed_df_updated.parquet')
+OUT_DIR       = RESULTS_ROOT
+SAMPLE_DIR    = _os.path.join(DATA_ROOT, 'sample_updated')
 os.makedirs(OUT_DIR, exist_ok=True)
 os.makedirs(SAMPLE_DIR, exist_ok=True)
 

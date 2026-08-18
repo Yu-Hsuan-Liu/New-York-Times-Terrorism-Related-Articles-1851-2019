@@ -11,10 +11,10 @@ Target word: "terrorism"
   1901-1930 -> 1931-1950: displacement = 0.3668 (shared vocab = 7102)
   1931-1950 -> 1951-1960: displacement = 0.4748 (shared vocab = 5397)
   1951-1960 -> 1961-1980: displacement = 0.4951 (shared vocab = 5922)
-  1961-1980 -> 1981-20010910: displacement = 0.6189 (shared vocab = 24659)
-  1981-20010910 -> 20010911-2019: displacement = 0.3219 (shared vocab = 54346)
-  Mean displacement: 0.4571
-  Max displacement:  0.6189
+  1961-1980 -> 1981-20010910: displacement = 0.6280 (shared vocab = 21165)
+  1981-20010910 -> 20010911-2019: displacement = 0.2179 (shared vocab = 44361)
+  Mean displacement: 0.4413
+  Max displacement:  0.6280
   Largest shift: 1961-1980 -> 1981-20010910
 
 Target word: "terrorist"
@@ -22,8 +22,8 @@ Target word: "terrorist"
   1901-1930 -> 1931-1950: displacement = 0.1633 (shared vocab = 7102)
   1931-1950 -> 1951-1960: displacement = 0.1378 (shared vocab = 5397)
   1951-1960 -> 1961-1980: displacement = 0.2498 (shared vocab = 5922)
-  1961-1980 -> 1981-20010910: displacement = 0.1560 (shared vocab = 24659)
-  1981-20010910 -> 20010911-2019: displacement = 0.1393 (shared vocab = 54346)
-  Mean displacement: 0.1530
+  1961-1980 -> 1981-20010910: displacement = 0.2080 (shared vocab = 21165)
+  1981-20010910 -> 20010911-2019: displacement = 0.1553 (shared vocab = 44361)
+  Mean displacement: 0.1643
   Max displacement:  0.2498
   Largest shift: 1951-1960 -> 1961-1980

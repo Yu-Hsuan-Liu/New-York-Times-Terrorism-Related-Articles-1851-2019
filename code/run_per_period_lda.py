@@ -6,7 +6,7 @@ Per-period LDA optimisation using the already-cleaned updated parquet.
 
 Inputs
 ------
-  D:/Jupyter/NYT_API/combined_processed_df_updated.parquet
+  data/combined_processed_df_updated.parquet (repo-relative; see path block below)
     Column used: 'clean_lemmatized_phrased'   (stopwords already applied)
     Period column: 'label'  (e.g. '1851-1900', '20010911-2019', ...)
 
@@ -21,7 +21,7 @@ Logic mirrors run_dynamic_lda_optimization() from nyt_main_training.py:
 
 Outputs
 -------
-  C:/Users/tosea/claude_test_project/nlp_results/Dynamic_LDA_Results_Updated.csv
+  results/Dynamic_LDA_Results_Updated.csv
     Columns: Period, Topic_ID, Keywords, Best_K, Coherence
 
 Run with:
@@ -54,8 +54,14 @@ np.random.seed(GLOBAL_SEED)
 # ─────────────────────────────────────────────────────────────────────────────
 # Paths
 # ─────────────────────────────────────────────────────────────────────────────
-PARQUET_PATH = 'D:/Jupyter/NYT_API/combined_processed_df_updated.parquet'
-OUT_DIR      = 'C:/Users/tosea/claude_test_project/nlp_results'
+# --- repository-relative paths (edit here or set NYT_NLP_DATA / NYT_NLP_RESULTS) ---
+import os as _os
+REPO_ROOT = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+DATA_ROOT = _os.environ.get('NYT_NLP_DATA', _os.path.join(REPO_ROOT, 'data'))
+RESULTS_ROOT = _os.environ.get('NYT_NLP_RESULTS', _os.path.join(REPO_ROOT, 'results'))
+_os.makedirs(RESULTS_ROOT, exist_ok=True)
+PARQUET_PATH = _os.path.join(DATA_ROOT, 'combined_processed_df_updated.parquet')
+OUT_DIR      = RESULTS_ROOT
 OUT_CSV      = os.path.join(OUT_DIR, 'Dynamic_LDA_Results_Updated.csv')
 
 # Column in the parquet that holds the pre-cleaned text

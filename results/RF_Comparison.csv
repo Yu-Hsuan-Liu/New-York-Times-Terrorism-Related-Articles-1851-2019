@@ -1,3 +1,3 @@
 Vectorizer,Weighted_F1,Macro_F1,CI_lower_95,CI_upper_95,Best_n_estimators,Best_max_depth,Best_criterion
-CountVectorizer,0.6633,0.6633,0.6293,0.6936,100,None,gini
-TF-IDF,0.6871,0.687,0.6517,0.7215,100,None,gini
+CountVectorizer,0.6923,0.6922,0.6582,0.7234,100,None,gini
+TF-IDF,0.696,0.6959,0.666,0.7288,100,None,gini

@@ -45,10 +45,16 @@ warnings.filterwarnings("ignore")
 SEED = 123
 np.random.seed(SEED)
 
-PARQUET_PATH = "D:/Jupyter/NYT_API/combined_processed_df.parquet"
+# --- repository-relative paths (edit here or set NYT_NLP_DATA / NYT_NLP_RESULTS) ---
+import os as _os
+REPO_ROOT = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+DATA_ROOT = _os.environ.get('NYT_NLP_DATA', _os.path.join(REPO_ROOT, 'data'))
+RESULTS_ROOT = _os.environ.get('NYT_NLP_RESULTS', _os.path.join(REPO_ROOT, 'results'))
+_os.makedirs(RESULTS_ROOT, exist_ok=True)
+PARQUET_PATH = _os.path.join(DATA_ROOT, 'combined_processed_df.parquet')
 ANALYSIS_COLUMN = "clean_lemmatized_phrased"
-OUTPUT_DIR = "C:/Users/tosea/claude_test_project/nlp_results"
-SAMPLE_DIR = "C:/Users/tosea/claude_test_project/nlp_results/sample_no_leak"
+OUTPUT_DIR = RESULTS_ROOT
+SAMPLE_DIR = _os.path.join(RESULTS_ROOT, 'sample_no_leak')
 
 N_BOOTSTRAP = 1000
 TEST_SIZE = 0.20

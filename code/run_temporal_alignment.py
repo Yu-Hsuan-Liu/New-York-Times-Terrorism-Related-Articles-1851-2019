@@ -25,7 +25,13 @@ warnings.filterwarnings('ignore')
 plt.rcParams['font.family'] = 'Times New Roman'
 plt.rcParams['font.size'] = 10
 
-OUT_DIR = 'C:/Users/tosea/claude_test_project'
+# --- repository-relative paths (edit here or set NYT_NLP_DATA / NYT_NLP_RESULTS) ---
+import os as _os
+REPO_ROOT = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+DATA_ROOT = _os.environ.get('NYT_NLP_DATA', _os.path.join(REPO_ROOT, 'data'))
+RESULTS_ROOT = _os.environ.get('NYT_NLP_RESULTS', _os.path.join(REPO_ROOT, 'results'))
+_os.makedirs(RESULTS_ROOT, exist_ok=True)
+OUT_DIR = REPO_ROOT
 
 # ── Period definitions ────────────────────────────────────────────────────────
 PERIODS_ORDERED = [
@@ -49,7 +55,7 @@ TARGET_WORDS = ['terrorism', 'terrorist']
 
 # ── Load data ─────────────────────────────────────────────────────────────────
 print('Loading parquet data...')
-df = pd.read_parquet('D:/Jupyter/NYT_API/combined_processed_df.parquet')
+df = pd.read_parquet(_os.path.join(DATA_ROOT, 'combined_processed_df.parquet'))
 print(f'  Loaded {len(df)} articles')
 
 # ── Train per-period CBOW models ─────────────────────────────────────────────
@@ -178,7 +184,7 @@ ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.grid(axis='y', alpha=0.3)
 
-fig_path = os.path.join(OUT_DIR, 'Figure2_Procrustes_Displacement.png')
+fig_path = os.path.join(REPO_ROOT, 'figures', 'Figure2_Procrustes_Displacement.png')
 plt.savefig(fig_path, dpi=300, bbox_inches='tight', facecolor='white')
 plt.close()
 print(f'Saved: {fig_path}')

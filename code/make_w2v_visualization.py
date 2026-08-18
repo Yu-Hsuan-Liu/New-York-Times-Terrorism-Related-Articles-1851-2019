@@ -10,7 +10,13 @@ plt.rcParams['font.family'] = 'Times New Roman'
 plt.rcParams['font.size'] = 10
 
 # ── Read data ────────────────────────────────────────────────────────────────
-df = pd.read_csv('C:/Users/tosea/claude_test_project/nlp_results/FINAL_ALL_MODELS_RESULTS.csv')
+# --- repository-relative paths (edit here or set NYT_NLP_DATA / NYT_NLP_RESULTS) ---
+import os as _os
+REPO_ROOT = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+DATA_ROOT = _os.environ.get('NYT_NLP_DATA', _os.path.join(REPO_ROOT, 'data'))
+RESULTS_ROOT = _os.environ.get('NYT_NLP_RESULTS', _os.path.join(REPO_ROOT, 'results'))
+_os.makedirs(RESULTS_ROOT, exist_ok=True)
+df = pd.read_csv(_os.path.join(RESULTS_ROOT, 'FINAL_ALL_MODELS_RESULTS.csv'))
 
 # ── Period ordering and display labels ───────────────────────────────────────
 periods_ordered = [
@@ -161,7 +167,7 @@ ax.set_title(
 ax.set_xlabel('Historical Period', fontsize=10, labelpad=8)
 
 # ── Save ──────────────────────────────────────────────────────────────────────
-out = 'C:/Users/tosea/claude_test_project/Figure1_W2V_Heatmap_CBOW.png'
+out = _os.path.join(REPO_ROOT, 'figures', 'Figure1_W2V_Heatmap_CBOW.png')
 plt.savefig(out, dpi=300, bbox_inches='tight', facecolor='white')
 plt.close()
 print('Saved:', out)

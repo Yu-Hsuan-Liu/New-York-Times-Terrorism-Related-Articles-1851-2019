@@ -12,8 +12,16 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import seaborn as sns
+import re
 
-OUT_DIR = 'C:/Users/tosea/claude_test_project/'
+# --- repository-relative paths (edit here or set NYT_NLP_DATA / NYT_NLP_RESULTS) ---
+import os as _os
+REPO_ROOT = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+DATA_ROOT = _os.environ.get('NYT_NLP_DATA', _os.path.join(REPO_ROOT, 'data'))
+RESULTS_ROOT = _os.environ.get('NYT_NLP_RESULTS', _os.path.join(REPO_ROOT, 'results'))
+_os.makedirs(RESULTS_ROOT, exist_ok=True)
+OUT_DIR = _os.path.join(REPO_ROOT, 'figures', '')
+_os.makedirs(OUT_DIR, exist_ok=True)
 
 # ── Shared style ──────────────────────────────────────────────────────────────
 plt.rcParams.update({
@@ -38,16 +46,7 @@ PERIOD_SHORT = [
 # ══════════════════════════════════════════════════════════════════════════════
 # FIGURE 4 — Confusion Matrix Heatmap
 # ══════════════════════════════════════════════════════════════════════════════
-cm_data = [
-    [107,  7,  0,  2,  1,  2,  0],
-    [ 10, 80, 17,  8,  4,  0,  0],
-    [  0, 20, 68, 25,  4,  3,  0],
-    [  3, 10,  7, 97,  0,  2,  0],
-    [  3, 10,  4, 16, 68, 15,  3],
-    [  5,  3,  1,  5, 15, 67, 24],
-    [  0,  1,  0,  0,  3, 17, 99],
-]
-cm = np.array(cm_data)
+cm = pd.read_csv(_os.path.join(RESULTS_ROOT, 'RF_Confusion_Matrix.csv'), index_col=0).values
 
 fig, ax = plt.subplots(figsize=(8.5, 7))
 
@@ -100,7 +99,7 @@ print(f'Saved: {path4}')
 # ══════════════════════════════════════════════════════════════════════════════
 # FIGURE 5 — Per-Period F1 Bar Chart
 # ══════════════════════════════════════════════════════════════════════════════
-perf = pd.read_csv('C:/Users/tosea/claude_test_project/nlp_results/RF_Final_PerClass.csv')
+perf = pd.read_csv(_os.path.join(RESULTS_ROOT, 'RF_Final_PerClass.csv'))
 
 # Use short labels in chronological order
 period_map = {
@@ -109,15 +108,15 @@ period_map = {
     '1931-1950': '1931–1950',
     '1951-1960': '1951–1960',
     '1961-1980': '1961–1980',
-    '1981-2001 (pre-9/11)': '1981–2001\n(pre-9/11)',
-    '2001-2019 (post-9/11)': '2001–2019\n(post-9/11)',
+    '1981-20010910': '1981–2001\n(pre-9/11)',
+    '20010911-2019': '2001–2019\n(post-9/11)',
 }
 perf['label'] = perf['Period'].map(period_map)
 
-OVERALL_F1 = 0.697
+OVERALL_F1 = float(re.search(r'Weighted F1: ([0-9.]+)', open(_os.path.join(RESULTS_ROOT, 'RF_Metrics.txt')).read()).group(1))
 
 # Color bars: darker teal for high F1, muted orange for low F1
-f1_vals = perf['F1'].values
+f1_vals = perf['F1-Score'].values
 colors = []
 for v in f1_vals:
     if v >= 0.80:
@@ -163,7 +162,7 @@ print(f'Saved: {path5}')
 # ══════════════════════════════════════════════════════════════════════════════
 # FIGURE 6 — Top-20 Feature Importance Bar Chart
 # ══════════════════════════════════════════════════════════════════════════════
-fi = pd.read_csv('C:/Users/tosea/claude_test_project/nlp_results/RF_Feature_Importance.csv',
+fi = pd.read_csv(_os.path.join(RESULTS_ROOT, 'RF_Feature_Importance.csv'),
                  index_col=0)
 fi.columns = ['Importance']
 top20 = fi.head(20).copy()

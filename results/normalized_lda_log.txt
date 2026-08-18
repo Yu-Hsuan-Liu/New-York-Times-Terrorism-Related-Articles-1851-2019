@@ -1,37 +1,37 @@
 Loading parquet...
-Documents per period: {'1851-1900': 597, '1901-1930': 1133, '1931-1950': 2831, '1951-1960': 1505, '1961-1980': 9880, '1981-20010910': 28470, '20010911-2019': 34444}
+Documents per period: {'1851-1900': 597, '1901-1930': 1133, '1931-1950': 2831, '1951-1960': 1505, '1961-1980': 9880, '1981-20010910': 16921, '20010911-2019': 34444}
 Min n (normalization target): 597
 Sampling 597 docs per period (no replacement)...
 Total: 4179
-Dictionary size: 17764
+Dictionary size: 17951
 Fitting normalized LDA (K=12, passes=20)...
 
 Topic keywords (normalized model):
-  T0: iraq, bush, iraqi, war, president_bush, force, baghdad, americans, iran, white_house
-  T1: school, student, cuba, help, freedom, cuban, education, system, democracy, peace
-  T2: vote, election, republican, senator, democratic, political, white, candidate, democrats, majority
-  T3: russia, russian, german, soviet, political, moscow, germany, communist, italian, war
-  T4: kill, force, army, night, street, troop, strike, rebel, french, attack
-  T5: war, right, mean, interest, peace, meet, force, hand, bring, course
-  T6: home, mother, friend, love, brother, child, son, father, wife, manhattan
-  T7: israel, israeli, palestinian, arab, hamas, palestinians, israelis, lebanon, gaza, west_bank
-  T8: british, pakistan, military, britain, muslim, turkey, attack, turkish, pakistani, militant
-  T9: french, military, plan, proposal, threat, france, war, policy, agency, nato
-  T10: attack, kill, military, bombing, suspect, soldier, bomb, authority, force, security
-  T11: federal, money, lawyer, judge, investigation, trial, program, interview, agent, help
+  T0: war, vote, right, political, election, follow, german, result, mean, force
+  T1: trial, judge, lawyer, suspect, federal, detainee, agent, release, prosecutor, crime
+  T2: school, attack, home, kill, child, hospital, bomb, student, mother, friend
+  T3: british, street, army, night, kill, force, keep, death, fire, troop
+  T4: russia, russian, military, soviet, communist, moscow, plan, nato, force, war
+  T5: iraq, iraqi, military, force, attack, baghdad, kill, war, soldier, turkey
+  T6: attack, arab, pakistan, military, muslim, terrorism, palestine, al_qaeda, war, afghanistan
+  T7: investigation, agency, authority, interview, terrorism, security, threat, terrorist_attack, dr, suspect
+  T8: bush, iraq, war, president_bush, congress, program, white_house, election, help, republican
+  T9: church, campaign, black, mayor, political, right, speak, run, hear, america
+  T10: french, france, paris, propose, algeria, increase, european, algerian, governor, britain
+  T11: israel, israeli, palestinian, hamas, palestinians, israelis, gaza, west_bank, kill, lebanon
 
 Computing topic proportions per period...
 
 Normalized LDA Topic Proportions (%):
-topic            0    1     2     3     4     5    6     7     8     9     10    11
-period                                                                             
-1851-1900       0.0  0.0  16.1   1.0   3.0  79.9  0.0   0.0   0.0   0.0   0.0   0.0
-1901-1930       0.0  0.2   6.7  30.5  15.7  44.7  0.3   0.0   0.2   0.2   0.0   1.5
-1931-1950       0.0  0.5   4.2  28.3  32.8  28.5  0.3   0.3   1.0   1.3   0.3   2.3
-1951-1960       0.0  1.7   2.3  16.6  40.0  14.6  0.3   0.7  11.2  10.2   1.2   1.2
-1961-1980       0.0  1.5   2.2  11.1  33.8  17.1  1.7   7.5   3.5  10.9   5.7   5.0
-1981-20010910   2.3  0.5   1.0   7.0  13.2  10.9  4.0  10.1   5.4  14.4  20.1  11.1
-20010911-2019  13.2  1.2   1.2   3.4   2.8   3.2  7.2   8.7   9.4  11.9  18.6  19.3
+topic            0     1     2     3     4     5     6    7     8    9    10   11
+period                                                                           
+1851-1900      93.0   0.0   0.0   6.9   0.0   0.0   0.0  0.0   0.0  0.2  0.0  0.0
+1901-1930      82.6   1.7   0.3  13.6   1.2   0.2   0.3  0.0   0.0  0.2  0.0  0.0
+1931-1950      55.3   3.5   1.3  22.4   7.0   0.5   9.4  0.0   0.0  0.2  0.3  0.0
+1951-1960      36.7   1.7   2.5  29.5  11.2   8.0   1.5  0.0   0.2  0.2  7.9  0.7
+1961-1980      32.0   4.9   6.2  19.9  18.1   3.7   8.5  1.2   0.5  1.3  1.0  2.7
+1981-20010910  11.1  11.4  11.9   4.4  15.6   9.9  17.3  4.0   5.4  1.7  0.2  7.4
+20010911-2019   3.2  10.1  15.7   1.7   6.0  10.1  17.8  9.4  15.1  1.8  1.5  7.7
 
-Saved: C:/Users/tosea/claude_test_project/nlp_results\LDA_Normalized_TopicProportions.csv
-Saved: C:/Users/tosea/claude_test_project/nlp_results\LDA_Normalized_Keywords.txt
+Saved: C:/Users/tosea/claude_project_NYT_NLP/reviewer_analyses/relabel_fix/results\LDA_Normalized_TopicProportions.csv
+Saved: C:/Users/tosea/claude_project_NYT_NLP/reviewer_analyses/relabel_fix/results\LDA_Normalized_Keywords.txt
