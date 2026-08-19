@@ -143,7 +143,7 @@ ax.axvline(OVERALL_F1, color='#333333', linestyle='--', linewidth=1.4,
 
 ax.set_xlabel('Weighted F1-Score')
 ax.set_title('Figure 4. Random Forest Classification F1-Score by Historical Period\n'
-             '(n = 597/period; balanced sampling with replacement; seed = 123)',
+             '(n = 597/period; balanced sampling without replacement; seed = 123)',
              pad=10)
 ax.set_xlim(0, 0.93)
 ax.invert_yaxis()   # earliest period at top
@@ -215,7 +215,7 @@ ax.legend(handles=legend_patches, loc='lower right', fontsize=9, framealpha=0.9)
 
 ax.set_xlabel('Gini Feature Importance')
 ax.set_title('Figure 5. Top-20 Random Forest Feature Importances\n'
-             '(Gini criterion; CountVectorizer, 66,012 features)',
+             '(Gini criterion; CountVectorizer, 77,538 features)',
              pad=10)
 ax.spines[['top', 'right']].set_visible(False)
 ax.xaxis.grid(True, linestyle=':', alpha=0.5)
